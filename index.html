@@ -20,6 +20,22 @@ body { font-family: Georgia, 'Times New Roman', serif; }
   overflow:hidden;
 }
 .letter { width:min(760px,100%); position:relative; z-index:1; }
+.envelope-screen { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; cursor:pointer; }
+.envelope-screen.hidden { display:none; }
+.envelope-wrap { width:min(360px,82vw); aspect-ratio:1.5; position:relative; perspective:900px; }
+.envelope { position:absolute; inset:0; background:#d9cbb8; border:1px solid #bcae9a; box-shadow:0 18px 45px rgba(40,30,15,.16); overflow:hidden; }
+.envelope:before { content:""; position:absolute; inset:0; background:linear-gradient(145deg,transparent 49.5%,#c7b8a3 50%,transparent 50.5%),linear-gradient(35deg,transparent 49.5%,#c7b8a3 50%,transparent 50.5%); opacity:.7; }
+.flap { position:absolute; left:0; top:0; width:100%; height:58%; background:#e4d8c8; border:1px solid #bcae9a; clip-path:polygon(0 0,100% 0,50% 100%); transform-origin:top; transition:transform 1.35s cubic-bezier(.22,.7,.2,1); z-index:4; backface-visibility:hidden; }
+.seal { position:absolute; left:50%; top:49%; transform:translate(-50%,-50%); width:48px; height:48px; border-radius:50%; background:#f7f1e7; border:1px solid #bcae9a; display:grid; place-items:center; z-index:5; transition:opacity .45s ease,transform .45s ease; font-size:18px; }
+.envelope-note { margin-top:24px; font-size:14px; letter-spacing:.08em; opacity:.55; }
+.envelope-wrap.open .flap { transform:rotateX(180deg); }
+.envelope-wrap.open .seal { opacity:0; transform:translate(-50%,-50%) scale(.7); }
+.envelope-wrap.open { cursor:default; }
+.letter-page { display:none; }
+.letter-page.reveal { display:block; animation:letterReveal 1.2s ease both; }
+@keyframes letterReveal { from { opacity:0; transform:translateY(28px) scale(.98); } to { opacity:1; transform:none; } }
+.letter { display:none; }
+.letter.reveal { display:block; animation:letterReveal 1.2s ease both; }
 .top { text-align:center; margin-bottom:34px; }
 .kicker { font: 11px/1.4 Arial,sans-serif; letter-spacing:.22em; text-transform:uppercase; opacity:.52; }
 h1 { font-weight:400; font-size:clamp(30px,6vw,46px); line-height:1.08; margin:13px 0 0; letter-spacing:-.02em; }
@@ -38,7 +54,16 @@ p { font-size:17px; line-height:1.82; margin:0 0 21px; }
 </head>
 <body>
 <main id="app">
-  <article class="letter">
+  <section class="envelope-screen" id="envelopeScreen" aria-label="Open the letter">
+    <div class="envelope-wrap" id="envelope" role="button" tabindex="0" aria-label="Open envelope">
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="seal">✦</div>
+      </div>
+    </div>
+    <div class="envelope-note">tap the envelope to open</div>
+  </section>
+  <article class="letter" id="letter">
     <header class="top">
       <div class="kicker">a little something</div>
       <h1>For you, before you go.</h1>
@@ -60,5 +85,25 @@ p { font-size:17px; line-height:1.82; margin:0 0 21px; }
     <div class="small">a little something, from a very far-away perspective</div>
   </article>
 </main>
+<script>
+const envelope = document.getElementById('envelope');
+const envelopeScreen = document.getElementById('envelopeScreen');
+const letter = document.getElementById('letter');
+let opened = false;
+function openLetter() {
+  if (opened) return;
+  opened = true;
+  envelope.classList.add('open');
+  envelopeScreen.classList.add('hidden');
+  setTimeout(() => letter.classList.add('reveal'), 950);
+}
+envelope.addEventListener('click', openLetter);
+envelope.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    openLetter();
+  }
+});
+</script>
 </body>
 </html>
