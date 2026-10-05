@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A little something for Kryzl</title>
+<style>
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+html, body { margin:0; min-height:100%; }
+body { font-family: Georgia, 'Times New Roman', serif; }
+#app {
+  min-height:100vh;
+  background-color: light-dark(#ebe5da,#171614);
+  color: light-dark(#29251f,#eee9df);
+  display:flex;
+  justify-content:center;
+  padding:clamp(24px,6vw,64px) 18px;
+  position:relative;
+  overflow:hidden;
+}
+.letter { width:min(760px,100%); position:relative; z-index:1; }
+.top { text-align:center; margin-bottom:34px; }
+.kicker { font: 11px/1.4 Arial,sans-serif; letter-spacing:.22em; text-transform:uppercase; opacity:.52; }
+h1 { font-weight:400; font-size:clamp(30px,6vw,46px); line-height:1.08; margin:13px 0 0; letter-spacing:-.02em; }
+.rule { width:42px; height:1px; background:currentColor; opacity:.25; margin:24px auto 0; }
+.paper { background:light-dark(#fffdf8,#211f1b); border:1px solid light-dark(#d8cfc0,#38342d); padding:clamp(30px,7vw,62px); box-shadow:0 18px 55px rgba(40,30,15,.12); position:relative; }
+.paper:before { content:""; position:absolute; inset:9px; border:1px solid light-dark(#e8e1d6,#302d27); pointer-events:none; }
+.content { position:relative; z-index:1; }
+.salutation { font-size:18px; margin:0 0 28px; }
+p { font-size:17px; line-height:1.82; margin:0 0 21px; }
+.italic { font-style:italic; }
+.dolce { text-align:center; font-size:26px; margin:34px 0 28px; letter-spacing:.02em; }
+.closing { margin-top:34px; }
+.small { font-size:12px; letter-spacing:.08em; opacity:.48; text-align:center; margin-top:26px; font-family:Arial,sans-serif; text-transform:uppercase; }
+@media (max-width:520px) { p{font-size:16px;line-height:1.75}.paper{padding:26px 22px} }
+</style>
+</head>
+<body>
+<main id="app">
+  <article class="letter">
+    <header class="top">
+      <div class="kicker">a little something</div>
+      <h1>For you, before you go.</h1>
+      <div class="rule"></div>
+    </header>
+    <section class="paper">
+      <div class="content">
+      <p class="salutation">Hi Kryzl!</p>
+      <p>Probably getting most of the messages from people you know personally, so I got tempted to share a view from a very far-away perspective—from someone who only saw pieces of you through socmed haha.</p>
+      <p>Even in high school, you've always seemed to be someone na napapalibutan ng tao. In college, you seem to have managed the same even with different people, so that's very remarkable, lalo na sa super different na environment. Idk if it's a conscious or a natural thing for you, considering what you're studying, but kudos! Very admirable.</p>
+      <p>At this point this is probably getting weird/awkward. I know di kita kilala that well and vice versa, and you probably don't need it from me, but you can disappear, you know. Unless that's something na ayaw mo, ofc.</p>
+      <p>Find the sweetness in doing absolutely nothing.</p>
+      <p>With the rate you're going through with life—constantly moving forward, achieving things, being there for people and keeping up with them—only so much a person can take. Hope wag ka ma-guilty for just sitting somewhere that'll make you feel at home, do nothing, and let you exist without having to justify it.</p>
+      <p>Yea, yun lang. Just a little something selfish to share haha.</p>
+      <p>Congratulations for finishing the 16 years of academic study. Years flew huh? Life will move considerably by your hands now. It'll probably only get harder, but that little selfishness would help.</p>
+      <p class="closing">Hope you don't see this and look back at all the messages sent and wonder, <span class="italic">“who's this creep?”</span> 🫪</p>
+      </div>
+    </section>
+    <div class="small">a little something, from a very far-away perspective</div>
+  </article>
+</main>
+</body>
+</html>
